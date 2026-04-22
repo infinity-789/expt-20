@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage ('Checkout') {
             steps {
-                git scm
+                checkout scm
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
 
         stage ('Run Container') {
             steps {
-                bat 'docker run -p -d 5020:5020 --name python-app python-app'
+                bat 'docker run -d -p 5020:5020 --name python-app python-app'
             }
         }
     }
