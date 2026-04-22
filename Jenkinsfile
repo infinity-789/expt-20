@@ -12,7 +12,7 @@ pipeline {
         stage ('Run tests') {
 
             steps {
-                bat '"C:\\Users\\Abhay\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pytest.exe" --junitxml=pytest.xml'
+                bat '"C:/Users/Abhay/AppData/Local/Programs/Python/Python311/Scripts/pytest.exe" --junitxml=pytest.xml'
             }
         }
 
