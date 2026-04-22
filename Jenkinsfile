@@ -1,0 +1,43 @@
+pipeline {
+
+    agent any
+
+    stages {
+        stage ('Checkout') {
+            steps {
+                git scm
+            }
+        }
+
+        stage ('Run tests') {
+
+            steps {
+                bat 'pytest --junitxml=pytest.xml'
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                bat 'docker build -t python-app .'
+            }
+        }
+
+        stage ('Cleanup old container') {
+            steps {
+                bat 'docker rm -f python-app || exit 0'
+            }
+        }
+
+        stage ('Run Container') {
+            steps {
+                bat 'docker run -p -d 5020:5020 --name python-app python-app'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'pytest.xml'
+        }
+    }
+}
