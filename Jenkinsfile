@@ -12,7 +12,7 @@ pipeline {
         stage ('Run tests') {
 
             steps {
-                bat 'pytest --junitxml=pytest.xml'
+                bat 'python -m pytest --junitxml=pytest.xml'
             }
         }
 
