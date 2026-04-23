@@ -30,7 +30,7 @@ pipeline {
 
         stage ('Run Container') {
             steps {
-                bat 'docker run -d -p 6000:5020 --name python-app python-app'
+                bat 'docker run -d -p 5020:5020 --name python-app python-app'
             }
         }
     }
